@@ -1,8 +1,9 @@
 import express from 'express'
 import cors from 'cors'
-import cookieParser from 'cookie-parser'
 import session,{SessionOptions} from 'express-session'
 import http from 'http'
+import mongoose from 'mongoose'
+
 
 export const createServer = ()=>{
     const app = express()
@@ -15,7 +16,7 @@ export const createServer = ()=>{
     )
     app.use(express.json())
     app.use(express.urlencoded({extended:true}))
-    const sessionOptions:SessionOptions={
+     const sessionOptions:SessionOptions= {
         secret:'your-secret-key',
         resave:false,
         saveUninitialized:false,
@@ -25,5 +26,5 @@ export const createServer = ()=>{
         }
     }
     app.use(session(sessionOptions))
-    
+
 }
