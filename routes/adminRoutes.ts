@@ -1,11 +1,10 @@
-const express = require('express')
-const admin_route = express()
-const session = require('express-session')
+import express, { Request } from "express"
+const admin_route = express.Router()
 
-admin_route.use(session({
-    secret:process.env.secretkey,
-    resave:false,
-    saveUninitalized:false
-}))
+import AdminController from '../controllers/adminController'
+const controller = new AdminController()
 
-admin_route.get('/admin',)
+admin_route.post('/',(req:Request,res)=>{controller.loadLogin(req,res)})
+admin_route.post('/addProduct',(req:Request,res)=>{controller.addProduct(req,res)})
+admin_route.put('/editProduct',(req:Request,res)=>{controller.editProduct(req,res)})
+export default admin_route
